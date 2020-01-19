@@ -5,7 +5,7 @@ function Item({ e }){
         <li key={e.id} className="dev-item">
             <header>
                 <div>
-                    <strong>{e.start}</strong>
+                    <strong>{e.h} x {e.a}</strong>
                 </div>
             </header>
         </li>

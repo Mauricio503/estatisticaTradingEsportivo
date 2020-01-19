@@ -1,14 +1,17 @@
 import React, {useState} from 'react';
 import api from './services/api';
-import EstrategiasItem from './components/EstrategiasItem';
+import EstrategiaItem from './components/EstrategiasItem'
 
 function App() {
 
     const [odds140a2, setOdds] = useState([]);
     async function buscaOdds140a2(){
         const response = await api.get('/estrategia/odd120a150');
-       
-        setOdds([...odds140a2,response.data]);
+        
+        setOdds(response.data);
+        odds140a2.map(e => {
+            console.log(e.id);
+        });
     }
 
     return (
@@ -18,9 +21,10 @@ function App() {
             <button onClick={buscaOdds140a2}>Buscar</button>
         </aside>
         <main>
+            <h3>Odds de 1.20 a 1.50</h3>
             <ul>
-                {odds140a2.map(dev => (
-                    <EstrategiasItem key={dev.id} dev={dev} />
+              {odds140a2.map(e => (
+                    <EstrategiaItem key={e.id} e={e} />
                 ))}
             </ul>
         </main>
