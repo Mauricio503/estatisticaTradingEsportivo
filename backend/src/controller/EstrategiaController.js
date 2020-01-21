@@ -21,7 +21,10 @@ module.exports = {
         const apiResponse = await axios.get("https://api.totalcorner.com/v1/match/today?token=9f0c3e829ed2bfd5&type=inplay&columns=odds,shotOff,possession");
         const {data} = apiResponse.data;
         const filtro = [];
-        const {placarHome, placarAway,timeOdd, oddInicial, oddFinal} = request.body;
+        const {placarHome, placarAway,timeOdd, oddInicial, oddFinal, 
+            tempoJogoInicial, tempoJogoFinal, rematesInicialHome, rematesFinalHome,
+            rematesInicialAway, rematesFinalAway, posseBolaInicialHome,
+            posseBolaFinalHome} = request.body;
         data.forEach(element =>{
              var passouPeloFiltro = true;
             // filtra placar
@@ -51,7 +54,35 @@ module.exports = {
                     indice = indice + 1;
                     });
             }
-            
+            // filtro tempo
+            if(Number.parseFloat(element.status.replace("Half","-1")) <  Number.parseFloat(tempoJogoInicial)
+                || Number.parseFloat(element.status.replace("Half","-1")) >  Number.parseFloat(tempoJogoFinal)){
+                    passouPeloFiltro = false;
+            }
+            //filtro remates
+            var indR = 0;
+            element.shot_off.map(e =>{
+                if(indR == 0){
+                    if(e < rematesInicialHome || e > rematesFinalHome){
+                        passouPeloFiltro = false;
+                    }
+                }else{
+                    if(e < rematesInicialAway || e > rematesFinalAway){
+                        passouPeloFiltro = false;
+                    }
+                }
+                indR = indR + 1;
+            });
+            //filtro posse de bola
+            var indP = 0
+            element.possess.map(e => {
+                if(indP == 0){
+                    if(e < posseBolaInicialHome || e > posseBolaFinalHome){
+                        passouPeloFiltro = false;
+                    }
+                }
+                indP = indP + 1;
+            });
             if(passouPeloFiltro == true){
                 filtro.push(element);
             }
