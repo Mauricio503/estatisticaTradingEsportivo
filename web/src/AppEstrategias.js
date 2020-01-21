@@ -5,7 +5,15 @@ import EstrategiaItem from './components/EstrategiasItem'
 function App() {
 
     const [odds140a2, setOdds] = useState([]);
-    async function buscaOdds140a2(){
+
+    setInterval(async function() { 
+        const response = await api.get('/estrategia/odd120a150');
+        
+        setOdds(response.data);
+        
+         }, 10000);
+
+        async function buscaOdds140a2(){
         const response = await api.get('/estrategia/odd120a150');
         
         setOdds(response.data);
@@ -13,12 +21,14 @@ function App() {
             console.log(e.id);
         });
     }
+    
+
 
     return (
     <div id="app">
         <aside>
             <h2>Estratégias</h2>
-            <button onClick={buscaOdds140a2}>Buscar</button>
+            <button >Buscar</button>
         </aside>
         <main>
             <h3>Odds de 1.20 a 1.50</h3>
