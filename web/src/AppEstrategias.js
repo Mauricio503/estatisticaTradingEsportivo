@@ -43,6 +43,9 @@ function App() {
 						<tr className="well">
 							<th>Times</th>
                             <th>Placar</th>
+                            <th>Tempo</th>
+                            <th>Remates</th>
+                            <th>Posse de bola</th>
                             <th>Odds</th>
 						</tr>						
 					</thead>
