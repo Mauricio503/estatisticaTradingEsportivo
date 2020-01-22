@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 import api from './services/api';
-import EstrategiaItem from './components/EstrategiasItem'
+import EstrategiaItem from './components/EstrategiasItem';
+import EstrategiaForm from './components/EstrategiasForm';
+import './AppEstrategias.css';
 
 function App() {
 
-    const [odds140a2, setOdds] = useState([]);
+    const [listaConsulta, setListaConsulta] = useState([]);
 
+    /*
     setInterval(async function() { 
         const response = await api.get('/estrategia/odd120a150');
         
@@ -21,22 +24,35 @@ function App() {
             console.log(e.id);
         });
     }
-    
-
+    */
+    async function handleAddEst(data){
+       const response = await api.post('/estrategia/pesquisa', data);
+       setListaConsulta(response.data);
+    }
 
     return (
     <div id="app">
         <aside>
             <h2>Estratégias</h2>
-            <button >Buscar</button>
+                <EstrategiaForm onSubmit={handleAddEst}/>
         </aside>
         <main>
-            <h3>Odds de 1.20 a 1.50</h3>
-            <ul>
-              {odds140a2.map(e => (
-                    <EstrategiaItem key={e.id} e={e} />
-                ))}
-            </ul>
+            <div className="table-reponsive">
+				<table className="table table-bordered table-hover">
+					<thead>
+						<tr className="well">
+							<th>Times</th>
+                            <th>Placar</th>
+                            <th>Odds</th>
+						</tr>						
+					</thead>
+					<tbody>
+                        {listaConsulta.map(e => (
+                            <EstrategiaItem key={e.id} e={e} />
+                        ))}							
+					</tbody>
+				</table>
+			</div>
         </main>
     </div>
   );

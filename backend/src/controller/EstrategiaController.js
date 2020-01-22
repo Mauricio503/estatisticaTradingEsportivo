@@ -22,8 +22,8 @@ module.exports = {
         const {data} = apiResponse.data;
         const filtro = [];
         const {placarHome, placarAway,timeOdd, oddInicial, oddFinal, 
-            tempoJogoInicial, tempoJogoFinal, rematesInicialHome, rematesFinalHome,
-            rematesInicialAway, rematesFinalAway, posseBolaInicialHome,
+            tempoJogoInicial, tempoJogoFinal, rematesInicial, rematesFinal,
+            timeRemates, posseBolaInicialHome,
             posseBolaFinalHome} = request.body;
         data.forEach(element =>{
              var passouPeloFiltro = true;
@@ -41,7 +41,7 @@ module.exports = {
                         || Number.parseFloat(e) > Number.parseFloat(oddFinal)){
                             passouPeloFiltro = false;
                         }
-                    }    
+                    }
                     indice = indice + 1;
                 });
             }else{
@@ -63,12 +63,16 @@ module.exports = {
             var indR = 0;
             element.shot_off.map(e =>{
                 if(indR == 0){
-                    if(e < rematesInicialHome || e > rematesFinalHome){
-                        passouPeloFiltro = false;
+                    if(timeRemates == "home"){
+                        if(e < rematesInicial || e > rematesFinal){
+                            passouPeloFiltro = false;
+                        }
                     }
                 }else{
-                    if(e < rematesInicialAway || e > rematesFinalAway){
-                        passouPeloFiltro = false;
+                    if(timeRemates == "away"){
+                        if(e < rematesInicial || e > rematesFinal){
+                            passouPeloFiltro = false;
+                        }
                     }
                 }
                 indR = indR + 1;
@@ -87,7 +91,7 @@ module.exports = {
                 filtro.push(element);
             }
         });
-    
+        
         return response.json(filtro);
     },
 };
