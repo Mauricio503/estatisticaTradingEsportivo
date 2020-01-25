@@ -15,7 +15,7 @@ module.exports = {
         const {placarHome, placarAway,timeOdd, oddInicial, oddFinal, 
             tempoJogoInicial, tempoJogoFinal, rematesInicial, rematesFinal,
             timeRemates, posseBolaInicialHome,
-            posseBolaFinalHome} = request.body;
+            posseBolaFinalHome} = request.query;
         data.forEach(element =>{
              var passouPeloFiltro = true;
             // filtra placar
