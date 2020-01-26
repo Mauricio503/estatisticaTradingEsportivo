@@ -14,7 +14,8 @@ module.exports = {
         const filtro = [];
         const {placarHome, placarAway,timeOdd, oddInicial, oddFinal, 
             tempoJogoInicial, tempoJogoFinal, rematesInicial, rematesFinal,
-            timeRemates, posseBolaInicialHome,
+            timeRemates, rematesInicial2, rematesFinal2,
+            timeRemates2, posseBolaInicialHome,
             posseBolaFinalHome} = request.query;
         data.forEach(element =>{
              var passouPeloFiltro = true;
@@ -59,9 +60,19 @@ module.exports = {
                             passouPeloFiltro = false;
                         }
                     }
+                    if(timeRemates2 == "home"){
+                        if(e < rematesInicial2 || e > rematesFinal2){
+                            passouPeloFiltro = false;
+                        }
+                    }
                 }else{
                     if(timeRemates == "away"){
                         if(e < rematesInicial || e > rematesFinal){
+                            passouPeloFiltro = false;
+                        }
+                    }
+                    if(timeRemates2 == "away"){
+                        if(e < rematesInicial2 || e > rematesFinal2){
                             passouPeloFiltro = false;
                         }
                     }
