@@ -23,7 +23,7 @@ module.exports = {
             if(Number.parseFloat(element.hg) != placarHome 
                 || Number.parseFloat(element.ag) != placarAway){
                     passouPeloFiltro = false;
-                }
+            }
             // filtro odd
             if(timeOdd == 'home'){
                 var indice = 0;
@@ -56,23 +56,23 @@ module.exports = {
             element.shot_off.map(e =>{
                 if(indR == 0){
                     if(timeRemates == "home"){
-                        if(e < rematesInicial || e > rematesFinal){
+                        if(Number.parseFloat(e) < rematesInicial || Number.parseFloat(e) > rematesFinal){
                             passouPeloFiltro = false;
                         }
                     }
                     if(timeRemates2 == "home"){
-                        if(e < rematesInicial2 || e > rematesFinal2){
+                        if(Number.parseFloat(e) < rematesInicial2 || Number.parseFloat(e) > rematesFinal2){
                             passouPeloFiltro = false;
                         }
                     }
                 }else{
                     if(timeRemates == "away"){
-                        if(e < rematesInicial || e > rematesFinal){
+                        if(Number.parseFloat(e) < rematesInicial || Number.parseFloat(e) > rematesFinal){
                             passouPeloFiltro = false;
                         }
                     }
                     if(timeRemates2 == "away"){
-                        if(e < rematesInicial2 || e > rematesFinal2){
+                        if(Number.parseFloat(e) < rematesInicial2 || Number.parseFloat(e) > rematesFinal2){
                             passouPeloFiltro = false;
                         }
                     }
@@ -83,7 +83,7 @@ module.exports = {
             var indP = 0
             element.possess.map(e => {
                 if(indP == 0){
-                    if(e < posseBolaInicialHome || e > posseBolaFinalHome){
+                    if(Number.parseFloat(e) < posseBolaInicialHome || Number.parseFloat(e) > posseBolaFinalHome){
                         passouPeloFiltro = false;
                     }
                 }
