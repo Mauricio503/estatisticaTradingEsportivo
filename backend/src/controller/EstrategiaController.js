@@ -20,8 +20,8 @@ module.exports = {
         data.forEach(element =>{
              var passouPeloFiltro = true;
             // filtra placar
-            if(Number.parseFloat(element.hg) != placarHome 
-                || Number.parseFloat(element.ag) != placarAway){
+            if(Number.parseFloat(element.hg) != Number.parseFloat(placarHome) 
+                || Number.parseFloat(element.ag) != Number.parseFloat(placarAway)){
                     passouPeloFiltro = false;
             }
             // filtro odd
@@ -56,23 +56,27 @@ module.exports = {
             element.shot_off.map(e =>{
                 if(indR == 0){
                     if(timeRemates == "home"){
-                        if(Number.parseFloat(e) < rematesInicial || Number.parseFloat(e) > rematesFinal){
+                        if(Number.parseFloat(e) < Number.parseFloat(rematesInicial)
+                         || Number.parseFloat(e) > Number.parseFloat(rematesFinal)){
                             passouPeloFiltro = false;
                         }
                     }
                     if(timeRemates2 == "home"){
-                        if(Number.parseFloat(e) < rematesInicial2 || Number.parseFloat(e) > rematesFinal2){
+                        if(Number.parseFloat(e) < Number.parseFloat(rematesInicial2)
+                         || Number.parseFloat(e) > Number.parseFloat(rematesFinal2)){
                             passouPeloFiltro = false;
                         }
                     }
                 }else{
                     if(timeRemates == "away"){
-                        if(Number.parseFloat(e) < rematesInicial || Number.parseFloat(e) > rematesFinal){
+                        if(Number.parseFloat(e) < Number.parseFloat(rematesInicial)
+                         || Number.parseFloat(e) > Number.parseFloat(rematesFinal)){
                             passouPeloFiltro = false;
                         }
                     }
                     if(timeRemates2 == "away"){
-                        if(Number.parseFloat(e) < rematesInicial2 || Number.parseFloat(e) > rematesFinal2){
+                        if(Number.parseFloat(e) < Number.parseFloat(rematesInicial2)
+                         || Number.parseFloat(e) > Number.parseFloat(rematesFinal2)){
                             passouPeloFiltro = false;
                         }
                     }
@@ -83,7 +87,8 @@ module.exports = {
             var indP = 0
             element.possess.map(e => {
                 if(indP == 0){
-                    if(Number.parseFloat(e) < posseBolaInicialHome || Number.parseFloat(e) > posseBolaFinalHome){
+                    if(Number.parseFloat(e) < Number.parseFloat(posseBolaInicialHome)
+                     || Number.parseFloat(e) > Number.parseFloat(posseBolaFinalHome)){
                         passouPeloFiltro = false;
                     }
                 }
