@@ -9,9 +9,15 @@
   },
   "dependencies": {
     "axios": "^0.19.1",
+    "cheerio": "^1.0.0-rc.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "got": "^10.5.2",
+    "phantom": "^6.3.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5",
+    "superagent": "^5.2.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"

@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppEstrategias from './AppEstrategias';
+import App from './App';
 
-ReactDOM.render(<AppEstrategias />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));

@@ -30,10 +30,16 @@ function App() {
        setListaConsulta(response.data);
     }
 
+     function dados() {
+        var info = document.getElementById('jsGraphCanvas');
+        console.log(info);
+    }
+
     return (
     <div id="app">
         <aside>
             <h2>Estratégias</h2>
+                <button onClick={dados}> executa função</button>
                 <EstrategiaForm onSubmit={handleAddEst}/>
         </aside>
         <main>

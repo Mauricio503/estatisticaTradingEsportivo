@@ -1,12 +1,24 @@
 const axios = require('axios');
 
-
 module.exports = {
     async teste(request,response){
         const t = {
             message: "certo"
         }
         return response.json(t);
+    },
+    async layPrimeiroTempo(request,response){
+        const {urlRadarSofaScore} = request.body;
+        console.log(urlRadarSofaScore);
+
+
+        const get = axios.get("https://www.sofascore.com/event/8382498/json").catch(err => {
+            //throw new Error(err);
+            console.log("erro", err);
+        });
+        console.log(get);
+        
+        return response.json(get.data);
     },
     async pesquisa(request, response){
         const apiResponse = await axios.get("https://api.totalcorner.com/v1/match/today?token=9f0c3e829ed2bfd5&type=inplay&columns=odds,shotOff,possession");
