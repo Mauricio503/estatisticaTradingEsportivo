@@ -1,24 +1,38 @@
 const axios = require('axios');
+const scraping  = require('../scraping/Index');
 
 module.exports = {
-    async teste(request,response){
-        const t = {
-            message: "certo"
-        }
-        return response.json(t);
-    },
     async layPrimeiroTempo(request,response){
-        const {urlRadarSofaScore} = request.body;
-        console.log(urlRadarSofaScore);
-
-
-        const get = axios.get("https://www.sofascore.com/event/8382498/json").catch(err => {
-            //throw new Error(err);
-            console.log("erro", err);
-        });
-        console.log(get);
-        
-        return response.json(get.data);
+        const {posicaoFavorito} = request.query;
+        const {liveForm} = request.body;
+        let contBarraBaixa = 0,contBarraMediaOuAlta = 0;
+        if(posicaoFavorito == "positivo"){
+            liveForm.map(element => {
+                if(element.minute <= 45 && element.minute > liveForm.length-7 && element.value > -30 
+                    && element.value <= 0){
+                        contBarraBaixa ++;
+                }
+                if(element.minute <= 45 && element.minute > liveForm.length-3 && element.value <= -30){
+                    contBarraMediaOuAlta ++;
+                }
+            });
+        }else{
+            liveForm.map(element => {
+                if(element.minute <= 45 && element.minute > liveForm.length-7 && element.value <= 30 
+                    && element.value >= 0){
+                        contBarraBaixa ++;
+                }
+                if(element.minute <= 45 && element.minute > liveForm.length-3 && element.value > 30){
+                    contBarraMediaOuAlta ++;
+                }
+            });
+        }
+        if(contBarraBaixa >= 5 || contBarraMediaOuAlta >= 2 || 
+            (contBarraMediaOuAlta >= 1 && contBarraBaixa >= 1)){
+            return response.json("true");
+        }else{
+            return response.json("false");
+        }
     },
     async pesquisa(request, response){
         const apiResponse = await axios.get("https://api.totalcorner.com/v1/match/today?token=9f0c3e829ed2bfd5&type=inplay&columns=odds,shotOff,possession");
