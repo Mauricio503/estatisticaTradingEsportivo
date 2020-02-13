@@ -5,9 +5,10 @@ module.exports = {
     async layPrimeiroTempo(request,response){
         const {posicaoFavorito} = request.query;
         const {liveForm} = request.body;
+        var jsonObj = JSON.parse(liveForm);
         let contBarraBaixa = 0,contBarraMediaOuAlta = 0;
         if(posicaoFavorito == "positivo"){
-            liveForm.map(element => {
+            jsonObj.forEach(element => {
                 if(element.minute <= 45 && element.minute > liveForm.length-7 && element.value > -30 
                     && element.value <= 0){
                         contBarraBaixa ++;
