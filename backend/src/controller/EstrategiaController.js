@@ -9,27 +9,29 @@ module.exports = {
         let contBarraBaixa = 0,contBarraMediaOuAlta = 0;
         if(posicaoFavorito == "positivo"){
             jsonObj.map(element => {
-                if(element.minute <= 45 && element.minute > liveForm.length-7 && element.value > -30 
+                if(element.minute <= 45 && element.minute > jsonObj.length-7 && element.value > -30 
                     && element.value <= 0){
                         contBarraBaixa ++;
                 }
-                if(element.minute <= 45 && element.minute > liveForm.length-3 && element.value <= -30){
+                if(element.minute <= 45 && element.minute > jsonObj.length-3 && element.value <= -30){
                     contBarraMediaOuAlta ++;
                 }
             });
         }else{
             jsonObj.map(element => {
-                if(element.minute <= 45 && element.minute > liveForm.length-7 && element.value <= 30 
+                if(element.minute <= 45 && element.minute > jsonObj.length-7 && element.value <= 30 
                     && element.value >= 0){
                         contBarraBaixa ++;
                 }
-                if(element.minute <= 45 && element.minute > liveForm.length-3 && element.value > 30){
+                if(element.minute <= 45 && element.minute > jsonObj.length-3 && element.value > 30){
                     contBarraMediaOuAlta ++;
                 }
             });
         }
-        if(contBarraBaixa >= 5 || contBarraMediaOuAlta >= 2 || 
-            (contBarraMediaOuAlta >= 1 && contBarraBaixa >= 1)){
+
+        if(contBarraBaixa >= 5 || contBarraMediaOuAlta >= 2){
+            return response.json("true");
+        }else if(contBarraMediaOuAlta >= 1 && contBarraBaixa >= 1){
             return response.json("true");
         }else{
             return response.json("false");
