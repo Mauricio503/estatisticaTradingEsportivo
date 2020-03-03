@@ -7,7 +7,7 @@ var myArgs = process.argv.slice(2);
 
 var appkey = 'JKFWdmd1zbUsQotF';
 
-var ssid = 'XPwgXaJKWDvvGGWo6G3uWTnXUhP+o+XBxUT/PT15hWA=';
+var ssid = 'o0EYLAkZZX6PB2RJLVaaHJjmM2txklehlWXIr3LJ+Z0=';
 
 var options = {
     hostname: 'api.betfair.com',
