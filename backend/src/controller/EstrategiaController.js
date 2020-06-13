@@ -15,29 +15,22 @@ module.exports = {
         const {posicaoFavorito} = request.query;
         const {liveForm,codigoMercado,codigoLinha} = request.body;
         var jsonObj = JSON.parse(liveForm);
-        let contBarraBaixa = 0,contBarraMediaOuAlta = 0;
+        let contBarra = 0;
         if(posicaoFavorito == "positivo"){
             jsonObj.map(element => {
-                if(element.minute <= 45 && element.minute > jsonObj.length-7 && element.value > -30 
-                    && element.value <= 0){
-                        contBarraBaixa ++;
-                }
-                if(element.minute <= 45 && element.minute > jsonObj.length-3 && element.value <= -30){
-                    contBarraMediaOuAlta ++;
+                if(element.minute <= 45 && element.minute > jsonObj.length-7 && element.value < 0 ){
+                    contBarra ++;
                 }
             });
         }else{
             jsonObj.map(element => {
-                if(element.minute <= 45 && element.minute > jsonObj.length-7 && element.value <= 30 
-                    && element.value >= 0){
-                        contBarraBaixa ++;
-                }
-                if(element.minute <= 45 && element.minute > jsonObj.length-3 && element.value > 30){
-                    contBarraMediaOuAlta ++;
+                if(element.minute <= 45 && element.minute > jsonObj.length-7 && element.value > 0){
+                    contBarra ++;
                 }
             });
         }
-        
+      /// Mercado
+      /*  
         var requestFilters = '{"marketIds":["' + codigoMercado + '"],"priceProjection":{"priceData":["EX_BEST_OFFERS"],"exBestOfferOverRides":{"bestPricesDepth":2,"rollupModel":"STAKE","rollupLimit":20},"virtualise":false,"rolloverStakes":false},"orderProjection":"ALL","matchProjection":"ROLLED_UP_BY_PRICE"}';
                     var jsonRequest =  constructJsonRpcRequest('listMarketBook', requestFilters);
                     var str = '';
@@ -66,9 +59,9 @@ module.exports = {
                     req.on('error', function(e) {
                         console.log(e);
                     });
+        */
         
-        
-        if(contBarraBaixa >= 5 || contBarraMediaOuAlta >= 2){
+        if(contBarra >= 5){
             if(situacaoJogo1 == false){
                 situacaoJogo1 = true;
                 /////busca mercado
@@ -76,8 +69,6 @@ module.exports = {
             }else{
                 
             }
-            return response.json("true");
-        }else if(contBarraMediaOuAlta >= 1 && contBarraBaixa >= 1){
             return response.json("true");
         }else{
             return response.json("false");
