@@ -11,7 +11,7 @@ var myArgs = process.argv.slice(2);
 // App key
 var appkey = 'JKFWdmd1zbUsQotF';
 // Session token
-var ssid = 'LyNRD7R7zpgDGUx4vb1Y3dpnhZ0947exQbF2y5Hz9TI=';
+var ssid = 'XPwgXaJKWDvvGGWo6G3uWTnXUhP+o+XBxUT/PT15hWA=';
 var FIRST_INDEX = 0;
 var DEFAULT_ENCODING = 'utf-8';
 var DEFAULT_JSON_FORMAT = '\t';

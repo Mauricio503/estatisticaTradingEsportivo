@@ -13,4 +13,4 @@ const takeScreenshot = async(url) =>{
     await instance.exit();
 }
 
-takeScreenshot("https://www.sofascore.com/event/8296582/json");
+takeScreenshot("https://cs.betradar.com/sportcenter/soccer#matchId=18611822");

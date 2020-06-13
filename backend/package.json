@@ -4,7 +4,6 @@
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/index.js",
     "start": "node src/index.js"
   },
   "dependencies": {
@@ -17,9 +16,7 @@
     "phantom": "^6.3.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.5",
+    "sequelize": "^5.21.12",
     "superagent": "^5.2.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.2"
   }
 }
